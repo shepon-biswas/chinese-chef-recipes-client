@@ -11,7 +11,7 @@ const Header = () => {
               Chinese Chef Recipe
             </Link>
           </div>
-          <div className="flex-none">
+          <div className=" flex flex-wrap">
             <ul className="menu menu-horizontal px-1">
               <li>
                 <a>Home</a>
@@ -22,31 +22,13 @@ const Header = () => {
               <li>
                 <a>Blogs</a>
               </li>
+              <li>
+              <button className="btn btn-info text-white"><Link to={'/login'}>Login</Link></button>
+                
+              </li>
+
             </ul>
-            {/* User Profile */}
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src="https://images.pexels.com/photos/8093964/pexels-photo-8093964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-                </div>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
       </div>
