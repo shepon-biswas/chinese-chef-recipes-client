@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 import Header from '../shared/Header/Header';
 
 const Login = () => {
+
+  const {signInUser} = useContext(AuthContext)
+
+  const handleSignIn = e =>{
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    signInUser(email, password)
+    .then(result => {
+      const loggedUser = result.user;
+      // console.log(loggedUser)
+      form.reset();
+    })
+    .catch(error => console.error(error))
+
+  }
     return (
         <>
             <div>
@@ -16,7 +36,7 @@ const Login = () => {
             <h4 className="text-2xl font-bold mb-2 ">Please Login</h4>
             <hr />
             </div>
-            <form className="card-body">
+            <form onSubmit={handleSignIn} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

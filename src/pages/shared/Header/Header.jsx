@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   return (
     <>
       <div className="bg-amber-100">
@@ -23,12 +25,22 @@ const Header = () => {
                 <a>Blogs</a>
               </li>
               <li>
-              <button className="btn btn-info text-white"><Link to={'/login'}>Login</Link></button>
-                
+                <a>{user.displayName}</a>
               </li>
-
+              {user ? (
+                <>
+                  <li><button className="btn btn-info text-white">
+                    <Link>Logout</Link>
+                  </button></li>
+                </>
+              ) : (
+                <li>
+                  <button className="btn btn-info text-white">
+                    <Link to={"/login"}>Login</Link>
+                  </button>
+                </li>
+              )}
             </ul>
-            
           </div>
         </div>
       </div>
