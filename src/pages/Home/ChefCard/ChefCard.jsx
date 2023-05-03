@@ -1,9 +1,10 @@
 import React from "react";
 import { FaArrowRight, FaThumbsUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ChefCard = ({chef}) => {
 
-  const {name, bio, image, experiences, recipes, likes} = chef;
+  const {id, name, bio, image, experiences, recipes, likes} = chef;
   return (
     <>
       <div className="">
@@ -34,7 +35,11 @@ const ChefCard = ({chef}) => {
             </div>
           </div>
           <div className="card-actions">
-            <button className="btn btn-outline btn-warning my-2">View Recipes  <FaArrowRight className="ms-2"></FaArrowRight> </button>
+            <button className="btn btn-outline btn-warning my-2">
+              <Link to={`/chef/${chef.id}`}>View Recipes
+              </Link>
+              <FaArrowRight className="ms-2"></FaArrowRight>
+            </button>
           </div>
         </div>
       </div>
