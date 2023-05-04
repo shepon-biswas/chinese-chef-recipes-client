@@ -21,8 +21,8 @@ const Recipes = () => {
       setLoading(false);
     };
     datafetch();
-  },[]);
-  
+  }, []);
+
   if (loading) {
     return <progress className="progress w-56 text-center"></progress>;
   }
@@ -30,16 +30,27 @@ const Recipes = () => {
 
   return (
     <>
-      <div className=" w-11/12 md:w-10/12 mx-auto ">
+      <div className="bg-amber-100">
         {/* Banner Section */}
-        <div className="h-60 bg-orange-300">
-          <h3>Banner section will goes here</h3>
+        <div className=" w-full md:w-10/12 mx-auto grid md:grid-cols-2 py-5">
+          <div className="px-4 md:px-2">
+            <h3 className="text-3xl font-bold my-5">{singleChef.name}</h3>
+            <p className="w-full md:w-5/6">{singleChef.bio}</p>
+            <p className="font-semibold text-xl my-1  ">Years of Experiences: {singleChef.experiences}</p>
+            <p className="font-semibold text-xl my-1  ">Total Likes: {singleChef.likes}</p>
+          </div>
+          <div className=" px-4 py-5">
+            <img className="rounded-lg object-cover" src={singleChef.image} alt="chef img" />
+          </div>
         </div>
+      </div>
+      <div className=" w-11/12 md:w-10/12 mx-auto ">
         {/* Title & Decsription Section */}
-        <div className="text-center text-4xl my-8 font-bold ">
+        <div className="text-center text-3xl my-8 font-bold ">
           <h2>
             Here are some <span className="text-amber-400"> delicious </span>
-            recipes
+            recipes from{" "}
+            <span className="text-amber-400">{singleChef.name}</span>
           </h2>
         </div>
         {/* Chef's Recipes Section */}
