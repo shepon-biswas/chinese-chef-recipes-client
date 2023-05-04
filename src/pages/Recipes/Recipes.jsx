@@ -1,10 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import RecipeCard from './RecipeCard';
 
 const Recipes = () => {
     // const {id} = useParams();
     const chefRecipes = useLoaderData();
+    const chefID = [...chefRecipes]
+    const ID = chefID[0].chef_id;
+    console.log(ID)
+    // console.log(chefRecipes);
+    const [chef, setChef] = useState();
+    const [loading, setLoading] = useState(true);
+    
+    
+
+    useEffect(() =>{
+        const datafetch = async() =>{
+            const data = await((await fetch(`http://localhost:5000/chefs`)).json())
+            setChef(data);
+            setLoading(false)
+        }
+        datafetch();
+        
+    },[])
+    if(loading){
+        return (<progress className="progress w-56 text-center"></progress>);
+    }
+    // console.log(chef);
+
+    const chefData = () =>{
+        const singleChef = chef.find(c => c.id == ID)
+        return singleChef;
+    }
+    console.log(chefData)
 
     return (
         <>
@@ -12,6 +40,7 @@ const Recipes = () => {
                 {/* Banner Section */} 
                 <div className='h-60 bg-orange-300'>
                     <h3>Banner section will goes here</h3>
+
                 </div>
                 {/* Title & Decsription Section */}
                 <div className='text-center text-4xl my-8 font-bold '>

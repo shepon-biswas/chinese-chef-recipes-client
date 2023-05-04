@@ -1,18 +1,21 @@
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import app from "../../firebase/firebase.config";
 import { AuthContext } from "../../providers/AuthProvider";
 import Header from "../shared/Header/Header";
 
-const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 
 const Login = () => {
-  const { signInUser} = useContext(AuthContext);
+  const { signInUser, googleSignin, githubSignin} = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log("login page path name", location);
+  const from = location.state?.from?.pathname || '/';
+  
   const auth = getAuth(app);
 
   const handleSignIn = (e) => {
@@ -28,13 +31,14 @@ const Login = () => {
         const loggedUser = result.user;
         form.reset();
         setSuccess("Successfully Logged In!");
+        navigate(from, {replace: true});
       })
       .catch((error) => setErrorMessage(error.message));
   };
 
   // Google sign in
   const handleGoogleSignin = () => {
-    signInWithPopup(auth, googleProvider)
+    googleSignin()
     .then(result =>{
       setErrorMessage('');
       const user = result.user;
@@ -48,7 +52,7 @@ const Login = () => {
 
   // Github sign in
   const handleGithubSignin = () =>{
-    signInWithPopup(auth, githubProvider)
+    githubSignin()
     .then(result =>{
       setErrorMessage('');
       const user = result.user;

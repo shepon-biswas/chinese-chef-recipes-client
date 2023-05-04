@@ -36,7 +36,7 @@ const ChefCard = ({chef}) => {
           </div>
           <div className="card-actions">
             <button className="btn btn-outline btn-warning my-2">
-              <Link to={`/chef/${chef.id}`}>View Recipes
+              <Link to={`/recipes/${chef.id}`}>View Recipes
               </Link>
               <FaArrowRight className="ms-2"></FaArrowRight>
             </button>
