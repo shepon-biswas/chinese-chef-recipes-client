@@ -10,7 +10,6 @@ const PrivateRoute = ({children}) => {
         return (<progress className="progress w-56 text-center"></progress>);
     }
     if(user){
-        console.log(children);
         return children;
     }
     return <Navigate state={{from:location}} to={'/login'} replace></Navigate>;

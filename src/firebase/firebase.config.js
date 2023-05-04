@@ -4,13 +4,14 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// console.log('env variable', import.meta.env.VITE_PASS)
 const firebaseConfig = {
-  apiKey: "AIzaSyDo5a319Pvu_9onL90xSVV4XLf990KvGJs",
-  authDomain: "chinese-chef-recipes.firebaseapp.com",
-  projectId: "chinese-chef-recipes",
-  storageBucket: "chinese-chef-recipes.appspot.com",
-  messagingSenderId: "951637751345",
-  appId: "1:951637751345:web:78425eaa8ea7ae5ae98710"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase
