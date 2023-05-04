@@ -15,7 +15,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const photo = form.photoUrl.value;
-    // console.log(name, email, password, photo);
+
     // Validate Password field
     if (!/(?=.*[A-Z])/.test(password)) {
       setErrorMessage("Password: Please add at least one uppercase letter");

@@ -8,7 +8,7 @@ import Header from "../shared/Header/Header";
 
 
 const Login = () => {
-  const { signInUser, googleSignin, githubSignin} = useContext(AuthContext);
+  const { signInUser, googleSignin, githubSignin, updateUser} = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const Login = () => {
     .then(result =>{
       setErrorMessage('');
       const user = result.user;
-      console.log(user)
+      // console.log(user)
       setSuccess("Successfully Logged In!");
     })
     .catch(error =>{
@@ -87,6 +87,7 @@ const Login = () => {
                 placeholder="Your Email"
                 className="input input-bordered"
                 name="email"
+                required
               />
             </div>
             <div className="form-control">
@@ -98,6 +99,7 @@ const Login = () => {
                 placeholder="Type Password"
                 className="input input-bordered"
                 name="password"
+                required
               />
             </div>
             {/* Display Success & Error Messages */}

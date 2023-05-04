@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  // console.log(user.displayName)
 
   const handleLogOut = () =>{
      logOut()
@@ -14,38 +15,41 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-amber-100">
-        <div className="navbar w-10/12 mx-auto ">
-          <div className="flex-1">
-            <Link to={"/"} className="normal-case text-xl font-bold">
+      <div className="bg-amber-400">
+        <div className=" w-11/12 md:w-10/12 mx-auto flex-col flex md:flex-row justify-between items-center py-4 ">
+          <div className="">
+            <Link to={"/"} className="normal-case text-xl font-bold text-white ">
               Chinese Chef Recipe
             </Link>
           </div>
-          <div className=" flex flex-wrap">
-            <ul className="menu menu-horizontal px-1">
+          <div className="">
+            <ul className="flex space-x-6 items-center text-white font-semibold">
               <li>
-                <a>Home</a>
+                <NavLink to={'/'} className={({isActive}) => (isActive? 'text-cyan-600 underline  underline-offset-1': '')}>Home</NavLink>
               </li>
               <li>
-                <a>Contact</a>
+                <NavLink to={'/contact'} className={({isActive}) => (isActive? 'text-cyan-600  underline  underline-offset-1': '')}>Contact</NavLink>
               </li>
               <li>
-                <a>Blogs</a>
+                <NavLink to={'/blogs' } className={({isActive}) => (isActive? 'text-cyan-600  underline   underline-offset-1': '')}>Blogs</NavLink>
               </li>
-              {user && <li>
-                <a>{user?.displayName}</a>
-              </li>}
+
+              {user && 
+              <>
+                <div className="w-10 h-10 rounded-full cursor-pointer">
+                  <img className="w-full rounded-full" src={user?.photoURL} alt="userImg"  title={user?.displayName}/>
+                </div>
+              </>
+              }
               {user ? (
                 <>
-                  <li><button onClick={handleLogOut} className="btn btn-info text-white">
-                    <Link>Logout</Link>
-                  </button></li>
+                  <li>
+                  <NavLink onClick={handleLogOut} className={'font-bold bg-white text-amber-400 px-3 py-2 rounded '}> Logout</NavLink>
+                  </li>
                 </>
               ) : (
                 <li>
-                  <button className="btn btn-info text-white">
-                    <Link to={"/login"}>Login</Link>
-                  </button>
+                  <NavLink to={'/login'} className={'font-bold bg-white text-amber-400 px-3 py-2 rounded '} > Login</NavLink>
                 </li>
               )}
             </ul>
