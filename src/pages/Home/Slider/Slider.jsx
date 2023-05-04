@@ -13,7 +13,7 @@ import { Navigation, Pagination } from "swiper";
 const Slider = () => {
   return (
     <>
-      <div className="w-10/12 mx-auto">
+      <div className="w-full md:w-10/12 mx-auto">
         <Swiper
           pagination={{
             dynamicBullets: true,
