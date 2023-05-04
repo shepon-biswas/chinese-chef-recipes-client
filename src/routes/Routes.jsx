@@ -31,7 +31,7 @@ const router = createBrowserRouter([
             {
                 path: 'recipes/:id',
                 element: <PrivateRoute><Recipes></Recipes></PrivateRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/recipes/${params.id}`)
+                loader:({params}) => fetch(`https://chinese-chef-recipe-server.vercel.app/recipes/${params.id}`)
 
             }
             
