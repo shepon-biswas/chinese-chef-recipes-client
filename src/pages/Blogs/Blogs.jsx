@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
+import ReactToPrint from "react-to-print";
 
 const Blogs = () => {
+  const ref = useRef();
+
   return (
     <>
       <div className=" w-11/12 md:w-10/12 mx-auto">
-        <div className="grid md:grid-cols-2 gap-10 my-5">
+        <div className="grid md:grid-cols-2 gap-10 my-5" ref={ref}>
           <div className="p-3 md:p-10 border border-amber-400 rounded">
             <h2 className="text-xl font-bold my-3 ">
               Differences between uncontrolled and controlled components.
@@ -144,6 +147,18 @@ const Blogs = () => {
               <br />
             </p>
           </div>
+        </div>
+        {/* React PDF Generate Button */}
+
+        <div className="text-center my-4">
+          <ReactToPrint
+            trigger={() => (
+              <button className="btn btn-outline btn-warning">
+                Download PDf
+              </button>
+            )}
+            content={() => ref.current}
+          />
         </div>
       </div>
     </>
