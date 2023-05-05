@@ -1,8 +1,20 @@
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RecipeCard = ({ recipe }) => {
   const { name, ingredients, cooking_method, ratings } = recipe;
+  
+  const favorite = (e) => {
+    toast.success("Added as your favorite recipe!")
+    e.target.disabled = true;
+  };
+
+  // const notify = (e) => {
+  //   toast("Added to favorite!");
+  //   e.target.disabled = true;
+  // }
 
   return (
     <>
@@ -27,9 +39,12 @@ const RecipeCard = ({ recipe }) => {
         {/*Card Footer */}
         <div className="flex justify-between items-center">
           <p className="font-semibold">Ratings: {ratings}</p>
-          <p className="bg-amber-400 p-5 rounded-full mb-2">
-            <FaRegHeart className="w-full"></FaRegHeart>
-          </p>
+          <div className="card-actions justify-end">
+                <button  onClick={favorite} className='btn btn-warning rounded-full flex items-center' title="Mark As Favorite">
+                <FaRegHeart className="me-1 h-4 w-4"></FaRegHeart>Favorite
+                </button>
+                <ToastContainer />
+          </div>
         </div>
       </div>
     </>

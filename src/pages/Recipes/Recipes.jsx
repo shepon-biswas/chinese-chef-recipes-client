@@ -26,7 +26,6 @@ const Recipes = () => {
   if (loading){
     return <progress className="progress w-56 text-center"></progress>;
   }
-  console.log(singleChef);
 
   return (
     <>
@@ -54,7 +53,7 @@ const Recipes = () => {
           </h2>
         </div>
         {/* Chef's Recipes Section */}
-        <div className="grid md:grid-cols-1 gap-6 my-12 px-3 md:px-0">
+        <div className="grid md:grid-cols-2 gap-6 my-12 px-3 md:px-0">
           {chefRecipes && chefRecipes.map((recipe) => (
             <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>
           ))}
